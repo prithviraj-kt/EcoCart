@@ -21,6 +21,7 @@ function ProductUpload() {
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [analysisCompleted, setAnalysisCompleted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -52,6 +53,7 @@ function ProductUpload() {
         greenCoins
       });
       
+      setAnalysisCompleted(true);
       setIsGenerating(false);
     // }, 2000);
   };
@@ -93,6 +95,8 @@ function ProductUpload() {
       carbonFootprint: 0,
       greenCoins: 0
     });
+    
+    setAnalysisCompleted(false);
   };
 
   const sampleImages = [
@@ -272,7 +276,7 @@ function ProductUpload() {
               </div>
             )}
 
-            {aiGenerated.ecoRating  && (
+            {analysisCompleted && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-green-50 rounded-lg p-4 border border-green-200">
                   <div className="flex items-center space-x-2 mb-2">
@@ -321,7 +325,7 @@ function ProductUpload() {
           <div className="flex justify-end">
             <button
               type="submit"
-              disabled={!formData.name || !formData.price || aiGenerated.ecoRating === 0}
+              disabled={!formData.name || !formData.price || !analysisCompleted}
               className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
             >
               <Upload className="h-5 w-5" />
