@@ -1,4 +1,4 @@
-# Eco-Wally 🌱
+# EcoCart 🌱
 
 An eco-friendly application powered by Gemini AI API.
 
